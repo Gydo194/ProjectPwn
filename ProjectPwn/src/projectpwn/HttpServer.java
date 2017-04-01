@@ -12,12 +12,15 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.io.InputStreamReader;
+import java.util.List;
 /**
  *
  * @author Gydo Kosten
  */
 public class HttpServer {
-    String[][] listeners;
+    String[] listenUrls = { "/ack", "/event.js", "/event" };
+    String[] listenData = { "ack ok", "//event.js 3.0 by Gydo Kosten", "var event = 'alert();'" };
+    
     ServerSocket server;
     int port = 3500;
     Socket http;
@@ -28,40 +31,47 @@ public class HttpServer {
         http = server.accept();
         send = new PrintWriter(http.getOutputStream(), true);
         rec = new BufferedReader(new InputStreamReader(http.getInputStream()));
-        
+        System.out.println("HttpServer.setup(): done");
         
     }
     public void addURL(String url, String data){
-        listeners[listeners.length + 1][0] = url;
-        listeners[listeners.length + 1][1] = data;          
+        //listenUrls[0] = "/ack";
+        //listenData[0] = "ack ok";
+        
+        System.out.println("HttpServer.addURL: done");
     }
     
     
     
     
-    public void run() throws IOException {
+    public void run() throws IOException { //beware runnable.run cant throw exception
         String input;
+        //while(true){
         while(true){
-        while((input = rec.readLine()) != null){  
-         //process the request
-         System.out.println("Received: " + input);
-         //Parse GET request
-         String requestURL = this.parseRequest(input);
-         //for i in listeners.length
-         //check if the requested url exists in the listeners array,
-         //and then output the data stored for that url,
-         //otherwise return a http 404.
-         
-         //remember this runs once for every HTTP header sent, so we have to break;.
-         break;
-        } //while input
-        } //whiletrue
+        if((input = rec.readLine()) != null && input != null && input != "" && input.contains("GET")){
+            //if(input.contains("GET")){
+            //if(input.contains("GET")){
+            System.out.println(input);
+            send.println("HTTP/1.1 200 OK");
+            send.println("");
+            send.println("200");
+            send.println("");
+            //break;
+            break;
+            //}//if input contains
+            //rec.close();
+           }
+        }//whiletrue
+        //}//whiletrue 2
         //return 0;
     }
     
     public String parseRequest(String request){
         return request.split(" ")[1];
     }
+    
+    
+    
     
     
 }
