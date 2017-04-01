@@ -1,2 +1,0 @@
-# ProjectPwn
-Followup on JavaXSS
