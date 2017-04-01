@@ -19,14 +19,12 @@ public class ProjectPwn {
     public static void main(String[] args) {
         // TODO code application logic here
         HttpServer projectServer = new HttpServer();
-        try {
-        projectServer.setup();
-        projectServer.addListener("/ack","Acknowledgement complete");
-        }
-        catch(IOException e){
-            System.out.println("IOException.");
-            System.exit(-1);
-        }
+            System.out.println("Starting httpserver.setup()");
+            System.out.println("Starting httpserver.addURL()");
+            projectServer.addURL("/ack","Acknowledgement complete");
+            projectServer.run();
+        
+        
     }
     
 }
