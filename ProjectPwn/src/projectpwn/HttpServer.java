@@ -45,6 +45,7 @@ public class HttpServer implements Runnable { //implements runnable to be able t
     
     
     public void run() { //beware runnable.run cant throw exception so try...catch it
+        System.out.println("Starting HTTP Server thread " + Thread.currentThread().getId());
         String input,requestUrl;
         boolean done;
         try{
