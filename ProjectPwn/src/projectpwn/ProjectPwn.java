@@ -1,15 +1,21 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+    Project Pwn main class,
+    Gydo Kosten, April 2, 2017.
+    
+
+
+
+
+
+*/
 package projectpwn;
 
-import java.io.IOException;
+//import java.io.IOException;
+//import javax.swing.*;
 
 /**
  *
- * @author root
+ * @author Gydo Kosten
  */
 public class ProjectPwn {
 
@@ -27,10 +33,16 @@ public class ProjectPwn {
             projectServer.addURL("/dist/projectpwn", "<html><h1>Welcome to ProjectPwn</h1><br><p>This is a demo page for the built-in web server.</p></html>");
             projectServer.addURL("/asdf", "LEL, asdf. haha.");
             if(projectServer.urlExists("/asdf")){
-                System.out.println("Removing Url"); //removes the URL only is it exists, to create a 404 again
+               System.out.println("Removing Url"); //removes the URL only if it exists, to create a 404 again
                 projectServer.removeUrl("/asdf");
             }
             projectServer.addURL("/threadid", "HTTP Server current threadid: " + Long.toString(projectServerThread.getId()) );
+            //test adding URLS
+            //JFrame addFrame = new JFrame();
+            //String UrlToAdd = JOptionPane.showInputDialog(null,"Add new URL to the server");
+            //String DataToAdd = JOptionPane.showInputDialog(null,"Add return data for URL " + UrlToAdd);
+            //projectServer.addURL(UrlToAdd,DataToAdd);
+            projectServer.printArrays();
             
             
         
