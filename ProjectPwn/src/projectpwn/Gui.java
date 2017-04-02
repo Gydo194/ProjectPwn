@@ -41,11 +41,6 @@ public class Gui extends javax.swing.JFrame {
         setTitle("Project Pwn");
 
         ExecuteCustomCodeButton.setText("Execute");
-        ExecuteCustomCodeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExecuteCustomCodeButtonActionPerformed(evt);
-            }
-        });
 
         CustomCodeTextArea.setColumns(20);
         CustomCodeTextArea.setRows(5);
@@ -88,6 +83,9 @@ public class Gui extends javax.swing.JFrame {
         ProjectTabPane.addTab("Execute", CustomCodeTab);
 
         DatabaseLabel.setText("Loading...");
+        DatabaseLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        DatabaseLabel.setSize(new java.awt.Dimension(62, 16));
+        DatabaseLabel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         DatabaseClearButton.setText("Clear");
         DatabaseClearButton.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +102,7 @@ public class Gui extends javax.swing.JFrame {
                 .addGroup(DatabasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DatabasePanelLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(DatabaseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(DatabaseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
                     .addGroup(DatabasePanelLayout.createSequentialGroup()
                         .addGap(131, 131, 131)
                         .addComponent(DatabaseClearButton)))
@@ -114,7 +112,7 @@ public class Gui extends javax.swing.JFrame {
             DatabasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DatabasePanelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(DatabaseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DatabaseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DatabaseClearButton)
                 .addContainerGap(11, Short.MAX_VALUE))
@@ -136,15 +134,6 @@ public class Gui extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ExecuteCustomCodeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExecuteCustomCodeButtonActionPerformed
-        // TODO add your handling code here:
-        System.out.println("button execute pressed");
-        this.DatabaseLabel.setText(this.CustomCodeTextArea.getText());
-        System.out.println("Executing " + this.CustomCodeTextArea.getText());
-        //projectServer.addUrl("/event", this.CustomCodeTextArea.getText());
-        
-    }//GEN-LAST:event_ExecuteCustomCodeButtonActionPerformed
-
     private void CustomCodeClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomCodeClearButtonActionPerformed
         // TODO add your handling code here:
        // this.CustomCodeTextArea.
@@ -154,7 +143,8 @@ public class Gui extends javax.swing.JFrame {
 
     private void DatabaseClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DatabaseClearButtonActionPerformed
         // TODO add your handling code here:
-        this.DatabaseLabel.setText("");
+        ProjectPwn.clearDatabase();
+        System.out.println("Clearing post database");
         //clear array(list) used for storing postback data
     }//GEN-LAST:event_DatabaseClearButtonActionPerformed
 
@@ -192,6 +182,7 @@ public class Gui extends javax.swing.JFrame {
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CustomCodeClearButton;
