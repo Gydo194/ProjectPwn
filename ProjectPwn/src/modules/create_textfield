@@ -1,0 +1,15 @@
+/*
+//DESC
+<html>
+<font color='blue'>this</font> module will create a
+<br>
+text field on the page with a
+<br>
+custom ID.
+</html>
+//!DESC
+*/
+
+var div = document.createElement("div");
+div.innerHTML = "<input type='text' id='input0' />";
+document.body.appendChild(div);

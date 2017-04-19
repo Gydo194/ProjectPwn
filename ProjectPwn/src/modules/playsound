@@ -1,0 +1,23 @@
+/*
+
+//DESC
+<html>
+This module will play a sound
+<br>
+on the hooked browsers.
+<br>
+Click the "load module" button
+<br>
+to load the code into the
+<br>
+Execute tab.
+</html>
+//!DESC
+
+
+*/
+
+var snd = new Audio();
+snd.src = "https://gydo194.github.io/test.mp3";
+snd.type = "audio/mp3";
+snd.play();

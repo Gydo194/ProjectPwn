@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+    Gui.java 1.0 by Gydo Kosten, built for Project Pwn.
+    7-4-17.
  */
 package projectpwn;
 
@@ -16,6 +15,7 @@ public class Gui extends javax.swing.JFrame {
      */
     public Gui() {
         initComponents();
+        //ModuleTree.addTreeSelectionListener(new ModuleViewHandler().TreeListener() ); 
     }
 
     /**
@@ -27,15 +27,33 @@ public class Gui extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToggleButton1 = new javax.swing.JToggleButton();
         ProjectTabPane = new javax.swing.JTabbedPane();
         CustomCodeTab = new javax.swing.JPanel();
         ExecuteCustomCodeButton = new javax.swing.JButton();
         CustomCodeTextScrollPane = new javax.swing.JScrollPane();
         CustomCodeTextArea = new javax.swing.JTextArea();
         CustomCodeClearButton = new javax.swing.JButton();
+        ExecuteStopButton = new javax.swing.JButton();
         DatabasePanel = new javax.swing.JPanel();
-        DatabaseLabel = new javax.swing.JLabel();
         DatabaseClearButton = new javax.swing.JButton();
+        DatabaseLabelScrollPanel = new javax.swing.JScrollPane();
+        DatabaseLabel = new javax.swing.JLabel();
+        DetailsPanel = new javax.swing.JPanel();
+        DetailsScrollPane = new javax.swing.JScrollPane();
+        DetailsLabel = new javax.swing.JLabel();
+        DetailsClearButton = new javax.swing.JButton();
+        ModulesPanel = new javax.swing.JPanel();
+        LoadModuleButton = new javax.swing.JButton();
+        ModuleTreeViewScrollPane = new javax.swing.JScrollPane();
+        ModuleTree = new javax.swing.JTree();
+        ModuleInfoLabel = new javax.swing.JLabel();
+        ConfigPanel = new javax.swing.JPanel();
+        ConfigIpTextField = new javax.swing.JTextField();
+        ConfigIPLabel = new javax.swing.JLabel();
+        ConfigSaveButton = new javax.swing.JButton();
+
+        jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Project Pwn");
@@ -53,18 +71,27 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
+        ExecuteStopButton.setText("Stop");
+        ExecuteStopButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExecuteStopButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout CustomCodeTabLayout = new javax.swing.GroupLayout(CustomCodeTab);
         CustomCodeTab.setLayout(CustomCodeTabLayout);
         CustomCodeTabLayout.setHorizontalGroup(
             CustomCodeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CustomCodeTabLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(CustomCodeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CustomCodeTextScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                     .addGroup(CustomCodeTabLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addContainerGap()
+                        .addComponent(CustomCodeTextScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE))
+                    .addGroup(CustomCodeTabLayout.createSequentialGroup()
                         .addComponent(CustomCodeClearButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ExecuteStopButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ExecuteCustomCodeButton)))
                 .addContainerGap())
         );
@@ -72,20 +99,16 @@ public class Gui extends javax.swing.JFrame {
             CustomCodeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CustomCodeTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(CustomCodeTextScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CustomCodeTextScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(CustomCodeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ExecuteCustomCodeButton)
-                    .addComponent(CustomCodeClearButton))
-                .addContainerGap(8, Short.MAX_VALUE))
+                    .addComponent(CustomCodeClearButton)
+                    .addComponent(ExecuteStopButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         ProjectTabPane.addTab("Execute", CustomCodeTab);
-
-        DatabaseLabel.setText("Loading...");
-        DatabaseLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        DatabaseLabel.setSize(new java.awt.Dimension(62, 16));
-        DatabaseLabel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         DatabaseClearButton.setText("Clear");
         DatabaseClearButton.addActionListener(new java.awt.event.ActionListener() {
@@ -94,31 +117,163 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
+        DatabaseLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        DatabaseLabel.setToolTipText("Any exfiltrated data trough the postback() function will be shown here.");
+        DatabaseLabel.setAutoscrolls(true);
+        DatabaseLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        DatabaseLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        DatabaseLabel.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        DatabaseLabelScrollPanel.setViewportView(DatabaseLabel);
+
         javax.swing.GroupLayout DatabasePanelLayout = new javax.swing.GroupLayout(DatabasePanel);
         DatabasePanel.setLayout(DatabasePanelLayout);
         DatabasePanelLayout.setHorizontalGroup(
             DatabasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DatabasePanelLayout.createSequentialGroup()
-                .addGroup(DatabasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DatabasePanelLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(DatabaseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
-                    .addGroup(DatabasePanelLayout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(DatabaseClearButton)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(DatabaseLabelScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(DatabasePanelLayout.createSequentialGroup()
+                .addComponent(DatabaseClearButton)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         DatabasePanelLayout.setVerticalGroup(
             DatabasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DatabasePanelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(DatabaseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(DatabaseLabelScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(DatabaseClearButton)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         ProjectTabPane.addTab("Database", DatabasePanel);
+
+        DetailsLabel.setText("<html></html>");
+        DetailsScrollPane.setViewportView(DetailsLabel);
+
+        DetailsClearButton.setText("Clear");
+        DetailsClearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DetailsClearButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DetailsPanelLayout = new javax.swing.GroupLayout(DetailsPanel);
+        DetailsPanel.setLayout(DetailsPanelLayout);
+        DetailsPanelLayout.setHorizontalGroup(
+            DetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DetailsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(DetailsScrollPane)
+                .addContainerGap())
+            .addGroup(DetailsPanelLayout.createSequentialGroup()
+                .addComponent(DetailsClearButton)
+                .addGap(0, 301, Short.MAX_VALUE))
+        );
+        DetailsPanelLayout.setVerticalGroup(
+            DetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DetailsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(DetailsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(DetailsClearButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        ProjectTabPane.addTab("Details", DetailsPanel);
+
+        LoadModuleButton.setText("Load module");
+        LoadModuleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoadModuleButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Modules");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("SE");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Create popup");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Exfiltration");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Grab input data");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Pivoting");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("create  HTTP request");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        ModuleTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        ModuleTreeViewScrollPane.setViewportView(ModuleTree);
+
+        ModuleInfoLabel.setText("Module info appears here");
+
+        javax.swing.GroupLayout ModulesPanelLayout = new javax.swing.GroupLayout(ModulesPanel);
+        ModulesPanel.setLayout(ModulesPanelLayout);
+        ModulesPanelLayout.setHorizontalGroup(
+            ModulesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ModulesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ModuleTreeViewScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ModulesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LoadModuleButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ModuleInfoLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        ModulesPanelLayout.setVerticalGroup(
+            ModulesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ModulesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ModulesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModulesPanelLayout.createSequentialGroup()
+                        .addComponent(ModuleInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LoadModuleButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModulesPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(ModuleTreeViewScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 24, Short.MAX_VALUE))
+        );
+
+        ProjectTabPane.addTab("Modules", ModulesPanel);
+
+        ConfigIpTextField.setText("ip address");
+
+        ConfigIPLabel.setText("Host:");
+
+        ConfigSaveButton.setText("Save");
+        ConfigSaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfigSaveButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ConfigPanelLayout = new javax.swing.GroupLayout(ConfigPanel);
+        ConfigPanel.setLayout(ConfigPanelLayout);
+        ConfigPanelLayout.setHorizontalGroup(
+            ConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ConfigPanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(ConfigIPLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ConfigIpTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(178, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ConfigPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(ConfigSaveButton))
+        );
+        ConfigPanelLayout.setVerticalGroup(
+            ConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ConfigPanelLayout.createSequentialGroup()
+                .addGroup(ConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ConfigIpTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ConfigIPLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
+                .addComponent(ConfigSaveButton))
+        );
+
+        ProjectTabPane.addTab("Config", ConfigPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,12 +283,12 @@ public class Gui extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ProjectTabPane)
+            .addComponent(ProjectTabPane, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    ConfRead config = new ConfRead(); // load my config reader
     private void CustomCodeClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomCodeClearButtonActionPerformed
         // TODO add your handling code here:
        // this.CustomCodeTextArea.
@@ -147,6 +302,29 @@ public class Gui extends javax.swing.JFrame {
         System.out.println("Clearing post database");
         //clear array(list) used for storing postback data
     }//GEN-LAST:event_DatabaseClearButtonActionPerformed
+
+    private void DetailsClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetailsClearButtonActionPerformed
+        // TODO add your handling code here:
+        DetailsLabel.setText("<html></html>");
+    }//GEN-LAST:event_DetailsClearButtonActionPerformed
+
+    private void ExecuteStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExecuteStopButtonActionPerformed
+        // TODO add your handling code here:
+        ProjectPwn.stopExecuting();
+    }//GEN-LAST:event_ExecuteStopButtonActionPerformed
+
+    private void LoadModuleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadModuleButtonActionPerformed
+        // TODO add your handling code here:
+       // CustomCodeTextArea.setText(config.fromJar("/modules/playsound.js"));
+       CustomCodeTextArea.setText(config.fromJar(ModuleViewHandler.modulePath).split("//!DESC")[1].replace("*/","").replace(";",";\n"));
+    }//GEN-LAST:event_LoadModuleButtonActionPerformed
+
+    private void ConfigSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfigSaveButtonActionPerformed
+        // TODO add your handling code here:
+        ProjectPwn.localIp = ConfigIpTextField.getText();
+        System.out.println("Setting IP:" + ConfigIpTextField.getText());
+        ProjectPwn.resetEventFile();
+    }//GEN-LAST:event_ConfigSaveButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,14 +363,32 @@ public class Gui extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ConfigIPLabel;
+    public javax.swing.JTextField ConfigIpTextField;
+    private javax.swing.JPanel ConfigPanel;
+    private javax.swing.JButton ConfigSaveButton;
     private javax.swing.JButton CustomCodeClearButton;
     private javax.swing.JPanel CustomCodeTab;
     public javax.swing.JTextArea CustomCodeTextArea;
     private javax.swing.JScrollPane CustomCodeTextScrollPane;
     private javax.swing.JButton DatabaseClearButton;
     public javax.swing.JLabel DatabaseLabel;
+    private javax.swing.JScrollPane DatabaseLabelScrollPanel;
     public javax.swing.JPanel DatabasePanel;
+    private javax.swing.JButton DetailsClearButton;
+    public javax.swing.JLabel DetailsLabel;
+    private javax.swing.JPanel DetailsPanel;
+    private javax.swing.JScrollPane DetailsScrollPane;
     public javax.swing.JButton ExecuteCustomCodeButton;
+    private javax.swing.JButton ExecuteStopButton;
+    private javax.swing.JButton LoadModuleButton;
+    public javax.swing.JLabel ModuleInfoLabel;
+    public javax.swing.JTree ModuleTree;
+    private javax.swing.JScrollPane ModuleTreeViewScrollPane;
+    private javax.swing.JPanel ModulesPanel;
     private javax.swing.JTabbedPane ProjectTabPane;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
+
+
 }

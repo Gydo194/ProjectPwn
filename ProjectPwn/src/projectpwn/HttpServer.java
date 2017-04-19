@@ -1,5 +1,5 @@
 /*
-    HttpServer v1.0
+    HttpServer v1.1.2
     Gydo Kosten, April 2, 2017.
     Built for Project Pwn.
     
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 //import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.lang.reflect.*;
+import java.net.InetAddress;
 /**
  *
  * @author Gydo Kosten
@@ -24,8 +25,10 @@ public class HttpServer implements Runnable { //implements runnable to be able t
     ArrayList<String> Urls = new ArrayList<String>();
     ArrayList<String> Data = new ArrayList<String>();
     ArrayList<Callable> callBacks = new ArrayList<Callable>();
-    String testText = "";
-    Object parentObject;
+    public String queryString = "";
+    public InetAddress clientAddress;
+    public String requestUrl;
+    //Object parentObject;
     
     
     
@@ -35,7 +38,7 @@ public class HttpServer implements Runnable { //implements runnable to be able t
     
     public void run() { //beware runnable.run cant throw exception so try...catch it
         System.out.println("Starting HTTP Server thread " + Thread.currentThread().getId());
-        String input,requestUrl,queryString = "";
+        String input;
         boolean done;
         try{
         ServerSocket httpServer = new ServerSocket(3500);
@@ -45,15 +48,19 @@ public class HttpServer implements Runnable { //implements runnable to be able t
           PrintWriter send = new PrintWriter(http.getOutputStream(),true);
           BufferedReader recv = new BufferedReader(new InputStreamReader(http.getInputStream()));
           
-          while((input = recv.readLine()) != null && input.contains("GET")){
+          while((input = recv.readLine()) != null && input.contains("GET") && (clientAddress = http.getInetAddress()) != null ){
               System.out.println("Running loop");
               System.out.println("Received: " + input);
+              System.out.println("clientAddress = " + clientAddress.getHostAddress());
               requestUrl = parse.getRequestUrl(input); //gets the request URL (ex. /event)
               System.out.println("Parsed URL: " + requestUrl);
               if(parse.hasQueryString(input)){
                   queryString = parse.getQueryString(input);
                   System.out.println("Parsed Query String: " + queryString);
                   
+              }
+              else{
+                  queryString = "";
               }
               
               done = false;
@@ -64,12 +71,11 @@ public class HttpServer implements Runnable { //implements runnable to be able t
                       send.println("HTTP/1.1 200 OK");
                       send.println("Server: ProjectPwn built-in server/1.0");
                       send.println();
-                      send.println(Data.get(i));
-                      if(queryString != ""){
-                          this.testText = queryString;
-                          ProjectPwn.setText(queryString);
+                      send.println(Data.get(i)); //return the requested data to client
+                      //if(queryString != ""){
+                          callBacks.get(i).call();
                           
-                      }
+                      //}
                       done = true;
                       
                 }   
@@ -89,9 +95,13 @@ public class HttpServer implements Runnable { //implements runnable to be able t
                
         }//whiletrue
         }//try
-        catch(IOException e){
-            System.out.println("IOexception");
+        catch(Exception e){
+            System.out.println("Exception");
+            
+            System.out.println(e.getLocalizedMessage());
+            ProjectPwn.throwError("ERROR: " + e.getLocalizedMessage());
             e.printStackTrace();
+            System.exit(-1);
         }
        
     }
@@ -117,8 +127,8 @@ public class HttpServer implements Runnable { //implements runnable to be able t
     private static class parse {
         public static String getRequestUrl(String req){
             String url = req.split(" ")[1];
-            if(url.contains("=")){
-                return url.split("=")[0];
+            if(url.contains("?")){
+                return url.split("\\?")[0];
             }
             else{
                 return url;
@@ -126,13 +136,13 @@ public class HttpServer implements Runnable { //implements runnable to be able t
             
         }
         public static boolean hasQueryString(String request){
-            return request.contains("=");
+            return request.contains("?");
         }
         
         public static String getQueryString(String url){ //input as an already parsed request URL, why re-parse if not necessary?
-            if(url.contains("=")){
+            if(url.contains("?")){
                 System.out.println("getQueryString(): parsing Query String from:"+url);
-                return url.split("=")[1].split(" ")[0];
+                return url.split("\\?")[1].split(" ")[0];
             }
             else{
                 return "";
@@ -184,6 +194,7 @@ public class HttpServer implements Runnable { //implements runnable to be able t
             if((index = Urls.indexOf(url)) != -1){;
             Urls.remove(index);
             Data.remove(index);
+            callBacks.remove(index);
             return 0;
         }
             else{
@@ -202,9 +213,31 @@ public class HttpServer implements Runnable { //implements runnable to be able t
         System.out.println("Ending PrintArrays().");
     }
     
-    public void setParentObject(Object parent){
-        this.parentObject = parent;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public static class NO_CALLBACK implements Callable<Boolean> {
+        public NO_CALLBACK() {
+            System.out.println("NO_CALLBACK: HTTP server callback ignored");
+        }
+        @Override
+        public Boolean call() {
+            System.out.println("NO_CALLBACK: HTTP server call-back ignored.");
+            return true;
+        }
     }
+    
+    
+    
+   // public void setParentObject(Object parent){
+    //    this.parentObject = parent;
+   // }
     
     
     
